@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>jQuery UI Draggable - Default functionality</title>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  <style>
+  .draggable { width: 150px; height: 150px; padding: 0.5em; }
+  .draggable2 { width: 150px; height: 150px; padding: 0.5em; }
+  #parent { width: 500px; height: 500px;}
+  .red {background-color: red;}
+  </style>
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script src="jquery.js"></script>
+  <script>
+  $( function() {
+    $( ".draggable" ).draggable({
+        containment: "parent"
+    });
+    $( ".draggable2" ).draggable({
+        containment: "parent",
+        start: function(event, ui) {
+            $(this).addClass('red')
+        },
+        stop: function(event, ui) {
+            $(this).removeClass('red')
+        } 
+    });
+    $( ".resize" ).resizable({
+        handles: "n, e, s, w, ne, sw, nw, se"
+    });
+  });
+  </script>
+</head>
+<body>
+    <div id="parent">
+        <input id="input" type="text" placeholder="Type Something">
+        <button onclick="drag()">Go</button>
+        <div id="myDiv" class="ui-widget-content draggable2 resize"></div>
+    </div>
+        <!-- <div id="parent">
+            <div id="draggable1" class="ui-widget-content draggable">
+                <p>Drag me around</p>
+              </div>
+              <div id="draggable2" class="ui-widget-content draggable">
+                  <p>This one drags too</p>
+              </div>
+         </div>         -->
+</body>
+</html>
